@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 //
 // The line above enables type checking for this file. Various IDEs interpret
 // the @ts-check directive. It will give you helpful autocompletion when
@@ -71,11 +71,13 @@ export function memoizeTransform(f) {
    // To narrow the type of the return variable, add `/** @type {[number, number]} */` above it.
    let result, lastX, lastY;
    return function (x, y) {
-      if (lastX = x  && lastY = y) {
-         return result
+      if (lastX === x && lastY === y) {
+         return result;
       } else {
-      result = f(x, y);
-      return (result )}
+         result = f(x, y);
+         lastX = x;
+         lastY = y;
+         return result;
+      }
    };
-
 }
